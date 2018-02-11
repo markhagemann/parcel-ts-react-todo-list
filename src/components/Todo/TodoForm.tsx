@@ -1,7 +1,8 @@
 import * as React from 'react';
 
 interface TodoFormProps {
-    todoOnChange: any;
+    todoOnChange: (event: React.FormEvent<HTMLInputElement>) => void;
+    todoOnSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
     todoValue: string;
     submitText: string;
     searchPlaceholder: string;
@@ -9,10 +10,10 @@ interface TodoFormProps {
 
 const TodoForm: React.SFC<TodoFormProps> = (props) => {
   return (
-    <>
-    <input onChange={props.todoOnChange} value={props.todoValue} type="text" placeholder={props.searchPlaceholder} />
-    <button type="submit"> {props.submitText} </button>
-    </>
+    <form onSubmit={props.todoOnSubmit}>
+      <input onChange={props.todoOnChange} value={props.todoValue} type="text" placeholder={props.searchPlaceholder} />
+      <button type="submit"> {props.submitText} </button>
+    </form>
   );
 };
 

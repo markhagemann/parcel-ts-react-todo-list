@@ -14,22 +14,33 @@ export interface TodoBuilderState {
 
 const FormWrapper = styled.div`
     text-align: center;
-    margin: 15px
+    margin: 15px;
 `;
 
 export default class TodoBuilder extends React.Component<TodoBuilderProps, TodoBuilderState> {
 
-  state = {todo: "", todoItems: ["Do the washing", "Clean kitchen", "Watch El Chapo"]};
+  state = {todo: "", todoItems: ["Test"]};
 
-  handleTodoChange = (event: React.FormEvent<HTMLInputElement>) => {
+  handleTodoChange = (event: React.FormEvent<HTMLInputElement> ) : void => {
     this.setState({todo: event.currentTarget.value})
   }
 
-  handleTodoSubmit = (event: React.FormEvent<HTMLButtonElement>) => {
-    
-    this.setState((prevState: any) => {
-      return {todoItems: prevState.todoItems.push(prevState.todo)};
-    });
+  handleTodoSubmit = (event: React.FormEvent<HTMLFormElement>) : void => {
+    let itemArray = this.state.todoItems;
+
+    if(this.state.todo !== "") {
+      itemArray.push(this.state.todo);
+
+      this.setState( {
+        todoItems: itemArray
+      });
+  
+      this.state.todo = "";
+    }
+
+    console.log(itemArray);
+   
+    event.preventDefault();
   }
  
   render() {

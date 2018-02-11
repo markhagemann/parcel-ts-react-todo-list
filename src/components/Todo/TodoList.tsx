@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 
 interface TodoListProps {
-  todoArray: any;
+  todoArray: string[];
 }
 
 const List = styled.ul`
@@ -25,15 +25,12 @@ const List = styled.ul`
 
 const TodoList: React.SFC<TodoListProps> = (props) => {
 
-  const todoArray = props.todoArray;
-
   return (
       <>
         <List>
-            {todoArray.map(function(todo: string, index: number){
-                  return <li key={ index }>{todo}</li>;
-              })
-            }
+            {props.todoArray.map((todo: string, index: number) =>
+              <li key={index}>{todo}</li>
+            )}
         </List>
       </>
   );

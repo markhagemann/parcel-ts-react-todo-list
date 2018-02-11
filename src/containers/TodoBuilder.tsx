@@ -36,10 +36,22 @@ export default class TodoBuilder extends React.Component<TodoBuilderProps, TodoB
       });
   
       this.state.todo = "";
-    }
+    } 
 
-    console.log(itemArray);
-   
+    console.log(this.state.todoItems);
+
+    event.preventDefault();
+  }
+
+  handleToDoRemove = (key: number) => {
+    let itemArray = this.state.todoItems;
+
+    itemArray.splice(key, 1);
+
+    this.setState( {
+      todoItems: itemArray
+    });
+
     event.preventDefault();
   }
  
@@ -47,7 +59,7 @@ export default class TodoBuilder extends React.Component<TodoBuilderProps, TodoB
     return (
       <FormWrapper>
         <TodoForm todoOnSubmit={this.handleTodoSubmit} todoOnChange={this.handleTodoChange} todoValue={this.state.todo} searchPlaceholder="What do you need to do?" submitText="Add to list" />
-        <TodoList todoArray={this.state.todoItems}/>
+        <TodoList todoRemove={this.handleToDoRemove} todoArray={this.state.todoItems}/>
       </FormWrapper> 
     );
   }

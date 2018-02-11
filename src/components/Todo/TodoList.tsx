@@ -8,10 +8,8 @@ interface TodoListProps {
 
 const List = styled.ul`
   margin: 20px auto;
-  padding: 15px;
-  width: 300px;
-  border: 1px solid #ddd;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  padding: 0px;
+  max-width: 270px;
 
   li {
     display: flex;
@@ -27,6 +25,7 @@ const List = styled.ul`
     justify-content: flex-start;
   }
   .remove-todo {
+    color: #cc4a00;
     justify-content: flex-end;
     margin-right: 0;
     text-decoration: none;

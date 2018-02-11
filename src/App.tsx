@@ -6,6 +6,7 @@ import TodoBuilder from './containers/TodoBuilder';
 
 injectGlobal`
   body {
+    background: #f6f6f6;
     color: #222;
     margin: 0;
     font-size: 15px;

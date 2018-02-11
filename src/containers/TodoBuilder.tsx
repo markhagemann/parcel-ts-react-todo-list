@@ -13,13 +13,23 @@ export interface TodoBuilderState {
 }
 
 const FormWrapper = styled.div`
-    text-align: center;
     margin: 15px;
 `;
 
+const FormContainer = styled.div`
+    margin: 0 auto;
+    text-align: center;
+    padding: 10px;
+    background: #fff;
+    max-width: 290px;
+    border: 1px solid #ddd;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+`;
+
+
 export default class TodoBuilder extends React.Component<TodoBuilderProps, TodoBuilderState> {
 
-  state = {todo: "", todoItems: ["Test"]};
+  state = {todo: "", todoItems: []};
 
   handleTodoChange = (event: React.FormEvent<HTMLInputElement> ) : void => {
     this.setState({todo: event.currentTarget.value})
@@ -52,14 +62,18 @@ export default class TodoBuilder extends React.Component<TodoBuilderProps, TodoB
       todoItems: itemArray
     });
 
+    console.log(this.state.todoItems);
+
     event.preventDefault();
   }
  
   render() {
     return (
       <FormWrapper>
-        <TodoForm todoOnSubmit={this.handleTodoSubmit} todoOnChange={this.handleTodoChange} todoValue={this.state.todo} searchPlaceholder="What do you need to do?" submitText="Add to list" />
-        <TodoList todoRemove={this.handleToDoRemove} todoArray={this.state.todoItems}/>
+        <FormContainer>
+          <TodoForm todoOnSubmit={this.handleTodoSubmit} todoOnChange={this.handleTodoChange} todoValue={this.state.todo} searchPlaceholder="What do you need to do?" submitText="Add it to the list" />
+          <TodoList todoRemove={this.handleToDoRemove} todoArray={this.state.todoItems}/> 
+        </FormContainer>   
       </FormWrapper> 
     );
   }

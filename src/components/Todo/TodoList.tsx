@@ -21,6 +21,7 @@ const List = styled.ul`
   }
   li:hover {
     background: #eee;
+    border-color: #ddd;
   }
   .todo {
     justify-content: flex-start;

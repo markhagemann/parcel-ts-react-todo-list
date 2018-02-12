@@ -9,7 +9,12 @@ export interface TodoBuilderProps {
 
 export interface TodoBuilderState {
   todo: string;
-  todoItems: string[];
+  todoItems: TodoItem[];
+}
+
+export interface TodoItem {
+  name: string
+  completed: boolean
 }
 
 const FormWrapper = styled.div`
@@ -19,28 +24,27 @@ const FormWrapper = styled.div`
 
 export default class TodoBuilder extends React.Component<TodoBuilderProps, TodoBuilderState> {
 
-  state = {todo: "", todoItems: ["Test"]};
+  state: Readonly<TodoBuilderState> = {todo: "", todoItems: []};
 
   handleTodoChange = (event: React.FormEvent<HTMLInputElement> ) : void => {
     this.setState({todo: event.currentTarget.value})
   }
 
   handleTodoSubmit = (event: React.FormEvent<HTMLFormElement>) : void => {
-    let itemArray = this.state.todoItems;
-
-    if(this.state.todo !== "") {
-      itemArray.push(this.state.todo);
-
-      this.setState( {
-        todoItems: itemArray
-      });
-  
-      this.state.todo = "";
+    
+    const newTodo: TodoItem = {
+      name: this.state.todo,
+      completed: false
     }
 
-    console.log(itemArray);
-   
-    event.preventDefault();
+    if(this.state.todo !== "") {
+      this.setState((prev) => ({
+        todoItems: [...prev.todoItems, newTodo]
+      }), () => { 
+        this.setState({todo: ""}) 
+      });
+    }
+    event.preventDefault()
   }
  
   render() {

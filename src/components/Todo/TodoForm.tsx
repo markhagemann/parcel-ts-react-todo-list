@@ -20,6 +20,7 @@ const Form = styled.form`
     border: 2px solid #3b4f98;
   }
   button:hover{
+    cursor: pointer;
     background: #5066ba;
     border-color: #4965d1;
   }

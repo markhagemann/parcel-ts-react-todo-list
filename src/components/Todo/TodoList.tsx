@@ -5,6 +5,7 @@ import { TodoItem } from '../../containers/TodoBuilder';
 interface TodoListProps {
   todoArray: TodoItem[];
   todoRemove: any;
+  todoComplete: any;
 }
 
 const List = styled.ul`
@@ -31,8 +32,23 @@ const List = styled.ul`
     justify-content: flex-end;
     margin-right: 0;
     text-decoration: none;
-    font-size: 13px;
+    font-size: 15px;
     font-weight: bold;
+  }
+  .todo-container {
+    display: flex;
+    justify-content: center;
+  }
+  .completed-checkbox {
+    margin-top: 6px;
+    margin-right: 8px;
+  }
+  .completed, .completed:hover{
+    color: #fff;
+    background: #74a83e;
+  }
+  .completed .remove-todo {
+    color: #545454;
   }
 `;
 
@@ -41,10 +57,13 @@ const TodoList: React.SFC<TodoListProps> = (props) => {
   return (
       <>
         <List>
-            {props.todoArray.map((todo: TodoItem) =>
-              <li key={todo.date}>
-                <span className="todo">{todo.name}</span>
-                <a href="#" onClick={() => props.todoRemove(todo.date)} className="remove-todo"> Remove </a>
+            {props.todoArray.map((todo: TodoItem, index: number) =>
+              <li className={todo.completed ? 'completed' : ''} key={todo.date}>
+                <div className="todo-container"> 
+                  <input onClick={() => props.todoComplete(index)} className="completed-checkbox" type="checkbox" checked={todo.completed}/>
+                  <span className="todo">{todo.name}</span>
+                </div>
+                <a href="#" onClick={() => props.todoRemove(todo.date)} className="remove-todo"> X </a>
               </li>
             )}
         </List>

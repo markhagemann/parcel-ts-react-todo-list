@@ -30,7 +30,7 @@ injectGlobal`
 
 const PageHeader = styled.div`
   padding: 20px;
-  margin-bottom: 50px;
+  margin-bottom: 30px;
   background: #3b4f98;
   color: #FFF;
   text-align: center;

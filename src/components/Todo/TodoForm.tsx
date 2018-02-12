@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
-const Form = styled.form`
+const FormHolder = styled.div`
   display: flex;
   flex-direction: column;
   max-width: 270px;
@@ -31,16 +31,16 @@ const Form = styled.form`
 
 interface TodoFormProps {
     todoOnChange: (event: React.FormEvent<HTMLInputElement>) => void;
-    todoOnSubmit: (event: React.FormEvent<HTMLButtonElement>) => void;
+    todoOnAdd: (event: React.FormEvent<HTMLButtonElement>) => void;
     todoValue: string;
 }
 
 const TodoForm: React.SFC<TodoFormProps> = (props) => {
   return (
-    <Form>
+    <FormHolder>
       <input onChange={props.todoOnChange} value={props.todoValue} type="text" placeholder="What do you need to do?" />
-      <button onClick={props.todoOnSubmit} type="submit"> Add it to the list </button>
-    </Form>
+      <button onClick={props.todoOnAdd}> Add it to the list </button>
+    </FormHolder>
   );
 };
 

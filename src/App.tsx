@@ -13,6 +13,18 @@ injectGlobal`
     height: 100%;
     width: 100%;
   }
+  ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: #a5a2a2;
+  }
+  ::-moz-placeholder { /* Firefox 19+ */
+    color: #a5a2a2;
+  }
+  :-ms-input-placeholder { /* IE 10+ */
+    color: #a5a2a2;
+  }
+  :-moz-placeholder { /* Firefox 18- */
+    color: #a5a2a2;
+  }
 `
 
 const PageHeader = styled.div`

@@ -31,6 +31,7 @@ const List = styled.ul`
     margin-right: 0;
     text-decoration: none;
     font-size: 13px;
+    font-weight: bold;
   }
 `;
 

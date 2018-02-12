@@ -8,12 +8,15 @@ const Form = styled.form`
   margin: 15px auto;
 
   input {
+    font-family: 'Titillium Web', sans-serif;
     padding: 10px;
-    font-size: 14px;
+    font-size: 15px;
     border: 1px solid #3b4f98;
     margin-bottom: 5px;
   }
   button {
+    font-family: 'Titillium Web', sans-serif;
+    font-size: 15px;
     color: #fff;
     padding:10px;
     background: #3b4f98;

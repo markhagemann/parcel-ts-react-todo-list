@@ -6,6 +6,7 @@ import TodoBuilder from './containers/TodoBuilder';
 
 injectGlobal`
   body {
+    font-family: 'Titillium Web', sans-serif;
     background: #f6f6f6;
     color: #222;
     margin: 0;
@@ -33,7 +34,6 @@ const PageHeader = styled.div`
   background: #3b4f98;
   color: #FFF;
   text-align: center;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
   h1 {
     margin: 0 15px;
@@ -50,7 +50,6 @@ export class App extends React.Component<any, any> {
       </PageHeader>
       <TodoBuilder />
       </>
-
     );
   }
 }

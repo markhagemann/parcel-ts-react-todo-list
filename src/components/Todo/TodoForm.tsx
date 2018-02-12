@@ -27,17 +27,15 @@ const Form = styled.form`
 
 interface TodoFormProps {
     todoOnChange: (event: React.FormEvent<HTMLInputElement>) => void;
-    todoOnSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
+    todoOnSubmit: (event: React.FormEvent<HTMLButtonElement>) => void;
     todoValue: string;
-    submitText: string;
-    searchPlaceholder: string;
 }
 
 const TodoForm: React.SFC<TodoFormProps> = (props) => {
   return (
-    <Form onSubmit={props.todoOnSubmit}>
-      <input onChange={props.todoOnChange} value={props.todoValue} type="text" placeholder={props.searchPlaceholder} />
-      <button type="submit"> {props.submitText} </button>
+    <Form>
+      <input onChange={props.todoOnChange} value={props.todoValue} type="text" placeholder="What do you need to do?" />
+      <button onClick={props.todoOnSubmit} type="submit"> Add it to the list </button>
     </Form>
   );
 };

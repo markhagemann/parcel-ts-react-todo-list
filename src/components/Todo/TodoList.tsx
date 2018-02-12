@@ -1,8 +1,9 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import { TodoItem } from '../../containers/TodoBuilder';
 
 interface TodoListProps {
-  todoArray: string[];
+  todoArray: TodoItem[];
   todoRemove: any;
 }
 
@@ -38,10 +39,10 @@ const TodoList: React.SFC<TodoListProps> = (props) => {
   return (
       <>
         <List>
-            {props.todoArray.map((todo: string, index: number) =>
-              <li key={index}>
-                <span className="todo">{todo} </span>
-                <a href="#" onClick={() => props.todoRemove(index)} className="remove-todo"> Remove </a>
+            {props.todoArray.map((todo: TodoItem) =>
+              <li key={todo.date}>
+                <span className="todo">{todo.name}</span>
+                <a href="#" onClick={() => props.todoRemove(todo.date)} className="remove-todo"> Remove </a>
               </li>
             )}
         </List>

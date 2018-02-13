@@ -56,6 +56,7 @@ export class TodoBuilder extends React.Component<TodoBuilderProps, TodoBuilderSt
     this.setState(prevState => ({ todoItems: prevState.todoItems.filter(todoItem => todoItem.date !== date) }));
   }
 
+  // TODO: Change to find by date rather than index as index changes based on what is shown by filters 
   handleTodoComplete = (index: number) => {
     this.setState( (prevState) => {
       const newTodoItems = prevState.todoItems;
@@ -80,7 +81,6 @@ export class TodoBuilder extends React.Component<TodoBuilderProps, TodoBuilderSt
   render() {
     
     if (!this.state.filterComplete && !this.state.filterIncomplete) {
-      console.log("both false - this should show both..");
       let filteredTodoItems: TodoItem[] = [...this.state.todoItems].filter( (todoItem) => {
           return true;
       });

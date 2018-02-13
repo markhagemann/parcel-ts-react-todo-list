@@ -8,17 +8,23 @@ interface TodoListProps {
   todoComplete: any;
   filterComplete: () => void;
   filterIncomplete: () => void;
+  filterNone: () => void;
 }
 
 const FiltersContainer = styled.div`
   margin: 5px;
+  text-align: left;
+
+  h4 {
+    margin: 10px 5px;
+  }
 
   label {
     font-size: 15px;
     color: #9c9c9c;
     display: block;
     font-style: italic;
-    text-align: left;
+    
   }
 
   hr {
@@ -82,12 +88,17 @@ export const TodoList: React.SFC<TodoListProps> = (props) => {
   return (
       <>
         <FiltersContainer>
+          <h4> Display: </h4>
           <label> 
-            <input onChange={() => props.filterComplete()} type="checkbox"/>
+            <input defaultChecked name="show" onChange={() => props.filterNone()} type="radio"/>
+            All tasks
+          </label>
+          <label> 
+            <input name="show" onChange={() => props.filterComplete()} type="radio"/>
             Complete tasks 
           </label>
           <label> 
-            <input onChange={() => props.filterIncomplete()} type="checkbox"/>
+            <input name="show" onChange={() => props.filterIncomplete()} type="radio"/>
             Incomplete tasks
           </label>
           <hr/>

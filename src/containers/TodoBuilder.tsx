@@ -65,20 +65,16 @@ export class TodoBuilder extends React.Component<TodoBuilderProps, TodoBuilderSt
     });
   }
 
+  handleNoFilters = () => {
+    this.setState({filterComplete: false, filterIncomplete: false});
+  }
+
   handleFilterComplete = () => {
-    this.setState( (prevState) => {
-      const updatefilterComplete = !prevState.filterComplete;
-        return {filterComplete: updatefilterComplete,
-      }
-    });
+    this.setState({filterComplete: true, filterIncomplete: false});
   }
 
   handleFilterIncomplete = () => {
-    this.setState( (prevState) => {
-      const updateFilterIncomplete = !prevState.filterIncomplete;
-       return {filterIncomplete: updateFilterIncomplete,
-      }
-    });
+    this.setState({filterComplete: false, filterIncomplete: true});
   } 
 
   render() {
@@ -106,7 +102,8 @@ export class TodoBuilder extends React.Component<TodoBuilderProps, TodoBuilderSt
       <FormWrapper>
         <FormContainer>
           <TodoForm onCreate={this.handleTodoAdd} />
-          <TodoList filterComplete={this.handleFilterComplete} 
+          <TodoList filterNone={this.handleNoFilters}
+                    filterComplete={this.handleFilterComplete} 
                     filterIncomplete={this.handleFilterIncomplete} 
                     todoComplete={this.handleTodoComplete} 
                     todoRemove={this.handleTodoRemove} 

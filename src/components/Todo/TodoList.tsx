@@ -62,9 +62,12 @@ const List = styled.ul`
     margin-top: 6px;
     margin-right: 8px;
   }
-  .completed, .completed:hover{
+  .completed{
     color: #fff;
     background: #74a83e;
+  }
+  .completed:hover {
+    background: #8aca49;
   }
   .completed .remove-todo {
     color: #73123c;

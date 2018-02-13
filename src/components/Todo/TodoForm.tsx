@@ -29,19 +29,36 @@ const FormHolder = styled.div`
   }
 `;
 
-interface TodoFormProps {
-    todoOnChange: (event: React.FormEvent<HTMLInputElement>) => void;
-    todoOnAdd: (event: React.FormEvent<HTMLButtonElement>) => void;
-    todoValue: string;
+interface TodoFormState {
+  todo: string;
 }
 
-const TodoForm: React.SFC<TodoFormProps> = (props) => {
-  return (
-    <FormHolder>
-      <input onChange={props.todoOnChange} value={props.todoValue} type="text" placeholder="What do you need to do?" />
-      <button onClick={props.todoOnAdd}> Add it to the list </button>
-    </FormHolder>
-  );
-};
+interface TodoFormProps {
+  onCreate: (name: string) => void;
+}
 
-export default TodoForm;
+export class TodoForm extends React.Component<TodoFormProps, TodoFormState> { 
+
+  state: Readonly<TodoFormState> = {
+    todo: ""
+  };
+
+  handleTodoChange = (event: React.FormEvent<HTMLInputElement>) : void => {
+    this.setState({todo: event.currentTarget.value})
+  }
+
+  handleOnClick = () => {
+    this.props.onCreate(this.state.todo);
+    this.setState({ todo: "" });
+  }
+
+  render() {
+    return (
+      <FormHolder>
+        <input onChange={this.handleTodoChange} value={this.state.todo} type="text" placeholder="What do you need to do?" />
+        <button onClick={this.handleOnClick}> Add it to the list </button>
+      </FormHolder>
+    );
+  }
+ 
+};

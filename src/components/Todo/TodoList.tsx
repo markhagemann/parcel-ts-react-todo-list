@@ -48,11 +48,11 @@ const List = styled.ul`
     background: #74a83e;
   }
   .completed .remove-todo {
-    color: #545454;
+    color: #73123c;
   }
 `;
 
-const TodoList: React.SFC<TodoListProps> = (props) => {
+export const TodoList: React.SFC<TodoListProps> = (props) => {
 
   return (
       <>
@@ -70,5 +70,3 @@ const TodoList: React.SFC<TodoListProps> = (props) => {
       </>
   );
 };
-
-export default TodoList;

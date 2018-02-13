@@ -1,14 +1,13 @@
 import * as React from 'react';
-import TodoForm from '../components/Todo/TodoForm';
+import { TodoForm } from '../components/Todo/TodoForm';
 import styled from 'styled-components';
-import TodoList from '../components/Todo/TodoList';
+import { TodoList } from '../components/Todo/TodoList';
 
 export interface TodoBuilderProps {
 
 }
 
 export interface TodoBuilderState {
-  todo: string;
   todoItems: TodoItem[];
 }
 
@@ -32,29 +31,21 @@ const FormContainer = styled.div`
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 `;
 
-export default class TodoBuilder extends React.Component<TodoBuilderProps, TodoBuilderState> {
+export class TodoBuilder extends React.Component<TodoBuilderProps, TodoBuilderState> {
 
-  state: Readonly<TodoBuilderState> = {todo: "", todoItems: []};
+  state: Readonly<TodoBuilderState> = {
+    todoItems: []
+  };
 
-  handleTodoChange = (event: React.FormEvent<HTMLInputElement>) : void => {
-    this.setState({todo: event.currentTarget.value})
-  }
-
-  handleTodoAdd = (event: React.FormEvent<HTMLButtonElement>) : void => {
-    
+  handleTodoAdd = (name: string) : void => {
     const newTodo: TodoItem = {
       date: new Date().getTime(),
-      name: this.state.todo,
+      name,
       completed: false
     }
-
-    if(this.state.todo !== "") {
-      this.setState((prevState) => ({
-        todoItems: [...prevState.todoItems, newTodo]
-      }), () => { 
-        this.setState({todo: ""}) 
-      });
-    }
+    this.setState((prevState) => ({
+      todoItems: [...prevState.todoItems, newTodo]
+    }));
   }
 
   handleTodoRemove = (date: number) => {
@@ -74,7 +65,7 @@ export default class TodoBuilder extends React.Component<TodoBuilderProps, TodoB
     return (
       <FormWrapper>
         <FormContainer>
-          <TodoForm todoOnAdd={this.handleTodoAdd} todoOnChange={this.handleTodoChange} todoValue={this.state.todo} />
+          <TodoForm onCreate={this.handleTodoAdd} />
           <TodoList todoComplete={this.handleTodoComplete} todoRemove={this.handleTodoRemove} todoArray={this.state.todoItems}/> 
         </FormContainer>   
       </FormWrapper> 

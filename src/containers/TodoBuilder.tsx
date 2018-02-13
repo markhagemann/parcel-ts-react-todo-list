@@ -83,7 +83,12 @@ export class TodoBuilder extends React.Component<TodoBuilderProps, TodoBuilderSt
 
   render() {
     
-    if (this.state.filterComplete) {
+    if (!this.state.filterComplete && !this.state.filterIncomplete) {
+      console.log("both false - this should show both..");
+      let filteredTodoItems: TodoItem[] = [...this.state.todoItems].filter( (todoItem) => {
+          return true;
+      });
+    } else if (this.state.filterComplete) {
       let filteredTodoItems: TodoItem[] = [...this.state.todoItems].filter( (todoItem) => {
         if(todoItem.completed) {
           return true;
@@ -95,9 +100,7 @@ export class TodoBuilder extends React.Component<TodoBuilderProps, TodoBuilderSt
           return true;
         }
       });
-    } else {
-      let filteredTodoItems: TodoItem[] = this.state.todoItems;
-    }
+    } 
 
     return (
       <FormWrapper>

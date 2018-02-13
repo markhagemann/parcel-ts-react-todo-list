@@ -14,7 +14,10 @@ const FiltersContainer = styled.div`
   margin: 5px;
 
   label {
+    font-size: 15px;
+    color: #9c9c9c;
     display: block;
+    font-style: italic;
     text-align: left;
   }
 

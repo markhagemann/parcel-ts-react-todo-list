@@ -107,7 +107,8 @@ export class TodoBuilder extends React.Component<TodoBuilderProps, TodoBuilderSt
                     filterIncomplete={this.handleFilterIncomplete} 
                     todoComplete={this.handleTodoComplete} 
                     todoRemove={this.handleTodoRemove} 
-                    todoArray={filteredTodoItems} /> 
+                    todoShownArray={filteredTodoItems}
+                    todoTotalArray={this.state.todoItems} /> 
         </FormContainer>   
       </FormWrapper> 
     );

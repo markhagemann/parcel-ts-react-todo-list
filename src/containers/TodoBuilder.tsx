@@ -9,6 +9,8 @@ export interface TodoBuilderProps {
 
 export interface TodoBuilderState {
   todoItems: TodoItem[];
+  filterComplete: boolean;
+  filterIncomplete: boolean;
 }
 
 export interface TodoItem {
@@ -34,7 +36,9 @@ const FormContainer = styled.div`
 export class TodoBuilder extends React.Component<TodoBuilderProps, TodoBuilderState> {
 
   state: Readonly<TodoBuilderState> = {
-    todoItems: []
+    todoItems: [],
+    filterComplete: false,
+    filterIncomplete: false
   };
 
   handleTodoAdd = (name: string) : void => {
@@ -60,13 +64,50 @@ export class TodoBuilder extends React.Component<TodoBuilderProps, TodoBuilderSt
       return {todoItems: newTodoItems}
     });
   }
- 
+
+  handleFilterComplete = () => {
+    this.setState( (prevState) => {
+      const updatefilterComplete = !prevState.filterComplete;
+        return {filterComplete: updatefilterComplete,
+      }
+    });
+  }
+
+  handleFilterIncomplete = () => {
+    this.setState( (prevState) => {
+      const updateFilterIncomplete = !prevState.filterIncomplete;
+       return {filterIncomplete: updateFilterIncomplete,
+      }
+    });
+  } 
+
   render() {
+    
+    if (this.state.filterComplete) {
+      let filteredTodoItems: TodoItem[] = [...this.state.todoItems].filter( (todoItem) => {
+        if(todoItem.completed) {
+          return true;
+        }
+      });
+    } else if (this.state.filterIncomplete) {
+      let filteredTodoItems: TodoItem[] = [...this.state.todoItems].filter( (todoItem) => {
+        if(!todoItem.completed) {
+          return true;
+        }
+      });
+    } else {
+      let filteredTodoItems: TodoItem[] = this.state.todoItems;
+    }
+
     return (
       <FormWrapper>
         <FormContainer>
           <TodoForm onCreate={this.handleTodoAdd} />
-          <TodoList todoComplete={this.handleTodoComplete} todoRemove={this.handleTodoRemove} todoArray={this.state.todoItems}/> 
+          <TodoList filterComplete={this.handleFilterComplete} 
+                    filterIncomplete={this.handleFilterIncomplete} 
+                    todoComplete={this.handleTodoComplete} 
+                    todoRemove={this.handleTodoRemove} 
+                    todoArray={filteredTodoItems} /> 
         </FormContainer>   
       </FormWrapper> 
     );

@@ -7,8 +7,11 @@ export interface TodoBuilderProps {
 
 }
 
+export type Filters = "all" | "complete" | "incomplete"
+
 export interface TodoBuilderState {
   todoItems: TodoItem[];
+  filter: Filters
   filterComplete: boolean;
   filterIncomplete: boolean;
 }
@@ -37,6 +40,7 @@ export class TodoBuilder extends React.Component<TodoBuilderProps, TodoBuilderSt
 
   state: Readonly<TodoBuilderState> = {
     todoItems: [],
+    filter: "all",
     filterComplete: false,
     filterIncomplete: false
   };
@@ -59,14 +63,22 @@ export class TodoBuilder extends React.Component<TodoBuilderProps, TodoBuilderSt
     this.setState(prevState => ({ todoItems: prevState.todoItems.filter(todoItem => todoItem.date !== date) }));
   }
 
-  // TODO: Change to find by date rather than index as index changes based on what is shown by filters 
-  handleTodoComplete = (index: number) => {
+  handleTodoComplete = (todo: TodoItem) => {
     this.setState( (prevState) => {
       const newTodoItems = prevState.todoItems;
-      newTodoItems[index].completed = !prevState.todoItems[index].completed; 
 
+      for(let i = 0; i < newTodoItems.length; i++) {
+        if (newTodoItems[i].date == todo.date) {
+          newTodoItems[i].completed = !newTodoItems[i].completed;
+        } 
+      }
+    
       return {todoItems: newTodoItems}
     });
+  }
+
+  updateFilter = (filter: Filters) => {
+    this.setState({filter});
   }
 
   handleNoFilters = () => {
@@ -81,36 +93,27 @@ export class TodoBuilder extends React.Component<TodoBuilderProps, TodoBuilderSt
     this.setState({filterComplete: false, filterIncomplete: true});
   } 
 
+  filterTodos = (todo: TodoItem) => {
+    switch (this.state.filter) {
+      case "complete":
+        return todo.completed
+      case "incomplete": 
+        return !todo.completed
+      default:
+        return true;
+    }
+  }
+
   render() {
-    
-    if (!this.state.filterComplete && !this.state.filterIncomplete) {
-      let filteredTodoItems: TodoItem[] = [...this.state.todoItems].filter( (todoItem) => {
-          return true;
-      });
-    } else if (this.state.filterComplete) {
-      let filteredTodoItems: TodoItem[] = [...this.state.todoItems].filter( (todoItem) => {
-        if(todoItem.completed) {
-          return true;
-        }
-      });
-    } else if (this.state.filterIncomplete) {
-      let filteredTodoItems: TodoItem[] = [...this.state.todoItems].filter( (todoItem) => {
-        if(!todoItem.completed) {
-          return true;
-        }
-      });
-    } 
 
     return (
       <FormWrapper>
         <FormContainer>
           <TodoForm onCreate={this.handleTodoAdd} />
-          <TodoList filterNone={this.handleNoFilters}
-                    filterComplete={this.handleFilterComplete} 
-                    filterIncomplete={this.handleFilterIncomplete} 
+          <TodoList onFilterChange={this.updateFilter}
                     todoComplete={this.handleTodoComplete} 
                     todoRemove={this.handleTodoRemove} 
-                    todoShownArray={filteredTodoItems}
+                    todoShownArray={this.state.todoItems.filter(this.filterTodos)}
                     todoTotalArray={this.state.todoItems} /> 
         </FormContainer>   
       </FormWrapper> 

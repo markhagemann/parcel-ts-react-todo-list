@@ -1,15 +1,13 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { TodoItem } from '../../containers/TodoBuilder';
+import { TodoItem, Filters } from '../../containers/TodoBuilder';
 
 interface TodoListProps {
   todoShownArray: TodoItem[];
   todoTotalArray: TodoItem[];
   todoRemove: any;
   todoComplete: any;
-  filterComplete: () => void;
-  filterIncomplete: () => void;
-  filterNone: () => void;
+  onFilterChange: (filter: Filters) => void
 }
 
 const FiltersContainer = styled.div`
@@ -22,7 +20,7 @@ const FiltersContainer = styled.div`
 
   label {
     margin-left: 5px;
-    color: #3b4f98;
+    color: #636363;
     font-size: 15px;
     display: flex;
     justify-content: flex-start;
@@ -100,32 +98,30 @@ export const TodoList: React.SFC<TodoListProps> = (props) => {
 
   return (
       <>
-        {props.todoTotalArray.length > 0 ? 
-          <FiltersContainer>
+        {props.todoTotalArray.length > 0 && 
+          <FiltersContainer >
             <h4> Display: </h4>
             <label> 
-              <input defaultChecked name="show" onChange={() => props.filterNone()} type="radio"/>
+              <input defaultChecked name="show" onChange={() => props.onFilterChange("all")} type="radio"/>
               All tasks
             </label>
             <label className="complete-tasks"> 
-              <input name="show" onChange={() => props.filterComplete()} type="radio"/>
+              <input name="show" onChange={() => props.onFilterChange("complete")} type="radio"/>
               Complete tasks 
             </label>
             <label className="incomplete-tasks"> 
-              <input name="show" onChange={() => props.filterIncomplete()} type="radio"/>
+              <input name="show" onChange={() => props.onFilterChange("incomplete")} type="radio"/>
               Incomplete tasks
             </label>
             <hr/>
-          </FiltersContainer> 
-          : 
-           null
+          </FiltersContainer>
         }
         
         <List>
             {props.todoShownArray.map((todo: TodoItem, index: number) =>
               <li className={todo.completed ? 'completed' : ''} key={todo.date}>
                 <div className="todo-container"> 
-                  <input onChange={() => props.todoComplete(index)} className="completed-checkbox" type="checkbox" checked={todo.completed}/>
+                  <input onChange={() => props.todoComplete(todo)} className="completed-checkbox" type="checkbox" checked={todo.completed}/>
                   <span className="todo">{todo.name}</span>
                 </div>
                 <a href="#" onClick={() => props.todoRemove(todo.date)} className="remove-todo"> X </a>

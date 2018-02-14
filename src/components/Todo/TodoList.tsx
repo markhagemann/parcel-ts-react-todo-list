@@ -118,7 +118,7 @@ export const TodoList: React.SFC<TodoListProps> = (props) => {
         }
         
         <List>
-            {props.todoShownArray.map((todo: TodoItem, index: number) =>
+            {props.todoShownArray.map((todo: TodoItem) =>
               <li className={todo.completed ? 'completed' : ''} key={todo.date}>
                 <div className="todo-container"> 
                   <input onChange={() => props.todoComplete(todo)} className="completed-checkbox" type="checkbox" checked={todo.completed}/>

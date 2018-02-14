@@ -1,7 +1,10 @@
 import * as React from "react";
+import { Route, Switch, NavLink } from 'react-router-dom';
 import styled from "styled-components";
 import { injectGlobal } from 'styled-components';
+
 import { TodoBuilder } from './containers/TodoBuilder';
+import { TeamManager } from './containers/TeamManager';
 
 
 injectGlobal`
@@ -33,10 +36,21 @@ const PageHeader = styled.div`
   margin-bottom: 30px;
   background: #3b4f98;
   color: #FFF;
-  text-align: center;
+  text-align: left;
 
-  h1 {
-    margin: 0 15px;
+  h1{
+    margin: 0;
+  }
+
+  a {
+    margin-right: 10px;
+    text-decoration: none;
+  }
+  .title {
+    color: #fff;
+  }
+  .title:hover {
+    color: red;
   }
 
 `;
@@ -46,9 +60,14 @@ export class App extends React.Component<any, any> {
     return (
       <>
       <PageHeader>
-        <h1> React to-do list</h1>
+        <h1> React to-do list</h1>    
+        <NavLink to="/"><span className="title">Home</span> </NavLink>
+        <NavLink to="/team"><span className="title">Team Manager</span> </NavLink>
       </PageHeader>
-      <TodoBuilder />
+      <Switch>
+        <Route exact path="/" component={TodoBuilder} />
+        <Route path="/team" component={TeamManager} />
+      </Switch>
       </>
     );
   }

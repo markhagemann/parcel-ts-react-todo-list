@@ -10,14 +10,14 @@ export interface TodoBuilderProps {
 export type Filters = "all" | "complete" | "incomplete"
 
 export interface TodoBuilderState {
-  todoItems: TodoItem[];
+  todoItems: TodoItem[]
   filter: Filters
-  filterComplete: boolean;
-  filterIncomplete: boolean;
+  filterComplete: boolean
+  filterIncomplete: boolean
 }
 
 export interface TodoItem {
-  date: number;
+  date: number
   name: string
   completed: boolean
 }

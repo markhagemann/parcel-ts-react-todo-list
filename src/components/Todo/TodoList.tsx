@@ -3,10 +3,10 @@ import styled from 'styled-components';
 import { TodoItem, Filters } from '../../containers/TodoBuilder';
 
 interface TodoListProps {
-  todoShownArray: TodoItem[];
-  todoTotalArray: TodoItem[];
-  todoRemove: any;
-  todoComplete: any;
+  todoShownArray: TodoItem[]
+  todoTotalArray: TodoItem[]
+  todoRemove: any
+  todoComplete: any
   onFilterChange: (filter: Filters) => void
 }
 

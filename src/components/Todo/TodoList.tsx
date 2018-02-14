@@ -21,6 +21,7 @@ const FiltersContainer = styled.div`
   }
 
   label {
+    margin-left: 5px;
     color: #3b4f98;
     font-size: 15px;
     display: flex;

@@ -8,10 +8,11 @@ const FormHolder = styled.div`
   margin: 15px auto;
 
   input {
+    background: #f6f6f6;
     font-family: 'Titillium Web', sans-serif;
     padding: 10px;
     font-size: 15px;
-    border: 1px solid #3b4f98;
+    border: 1px solid #ddd;
     margin-bottom: 5px;
   }
   button {

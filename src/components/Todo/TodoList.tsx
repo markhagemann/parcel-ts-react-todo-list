@@ -58,13 +58,12 @@ const List = styled.ul`
   li {
     display: flex;
     justify-content: space-between;
-    border: 1px solid #f6f6f6;
+    border: 1px solid #dedede;
     list-style-type: none;
     padding: 15px;
   }
   li:hover {
     background: #eee;
-    border-color: #ddd;
   }
   .todo {
     justify-content: flex-start;

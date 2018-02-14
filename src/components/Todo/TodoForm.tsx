@@ -37,7 +37,7 @@ interface TodoFormProps {
   onCreate: (name: string) => void;
 }
 
-export class TodoForm extends React.Component<TodoFormProps, TodoFormState> { 
+export class TodoForm extends React.Component<TodoFormProps, TodoFormState> {
 
   state: Readonly<TodoFormState> = {
     todo: ""
@@ -60,5 +60,5 @@ export class TodoForm extends React.Component<TodoFormProps, TodoFormState> {
       </FormHolder>
     );
   }
- 
+
 };

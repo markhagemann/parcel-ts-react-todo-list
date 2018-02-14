@@ -21,10 +21,18 @@ const FiltersContainer = styled.div`
   }
 
   label {
+    color: #3b4f98;
     font-size: 15px;
-    color: #9c9c9c;
     display: block;
     font-style: italic;
+  }
+
+  .complete-tasks {
+    color: #74a83e;
+  }
+
+  .incomplete-tasks {
+    color: #cc4a00;
   }
 
   hr {
@@ -94,11 +102,11 @@ export const TodoList: React.SFC<TodoListProps> = (props) => {
               <input defaultChecked name="show" onChange={() => props.filterNone()} type="radio"/>
               All tasks
             </label>
-            <label> 
+            <label className="complete-tasks"> 
               <input name="show" onChange={() => props.filterComplete()} type="radio"/>
               Complete tasks 
             </label>
-            <label> 
+            <label className="incomplete-tasks"> 
               <input name="show" onChange={() => props.filterIncomplete()} type="radio"/>
               Incomplete tasks
             </label>

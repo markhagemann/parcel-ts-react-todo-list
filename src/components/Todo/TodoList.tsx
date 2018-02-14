@@ -23,8 +23,13 @@ const FiltersContainer = styled.div`
   label {
     color: #3b4f98;
     font-size: 15px;
-    display: block;
-    font-style: italic;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  input {
+    margin: 0 5px 0 0;
   }
 
   .complete-tasks {

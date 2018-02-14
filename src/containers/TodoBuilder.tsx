@@ -42,14 +42,17 @@ export class TodoBuilder extends React.Component<TodoBuilderProps, TodoBuilderSt
   };
 
   handleTodoAdd = (name: string) : void => {
-    const newTodo: TodoItem = {
-      date: new Date().getTime(),
-      name,
-      completed: false
+    if(name != "") {
+      const newTodo: TodoItem = {
+        date: new Date().getTime(),
+        name,
+        completed: false
+      }
+      this.setState((prevState) => ({
+        todoItems: [...prevState.todoItems, newTodo]
+      }));
     }
-    this.setState((prevState) => ({
-      todoItems: [...prevState.todoItems, newTodo]
-    }));
+   
   }
 
   handleTodoRemove = (date: number) => {

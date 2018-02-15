@@ -54,8 +54,6 @@ const List = styled.ul`
   max-width: 270px;
 
   li {
-    display: flex;
-    justify-content: space-between;
     border: 1px solid #dedede;
     list-style-type: none;
     padding: 15px;
@@ -76,7 +74,19 @@ const List = styled.ul`
   }
   .todo-container {
     display: flex;
+    justify-content: space-between;
+  }
+  .todo-item {
+    display: flex;
     justify-content: center;
+  }
+  .assignee-container {
+    color: #e3dfdf;
+    margin-top: 5px;
+    padding: 5px;
+    background: #707070;
+    border: 1px solid #f0f0f0;
+    text-align: left;
   }
   .completed-checkbox {
     margin-top: 6px;
@@ -120,11 +130,16 @@ export const TodoList: React.SFC<TodoListProps> = (props) => {
         <List>
             {props.todoShownArray.map((todo: TodoItem) =>
               <li className={todo.completed ? 'completed' : ''} key={todo.date}>
-                <div className="todo-container"> 
-                  <input onChange={() => props.todoComplete(todo)} className="completed-checkbox" type="checkbox" checked={todo.completed}/>
-                  <span className="todo">{todo.name}</span>
+                <div className="todo-container" >
+                  <div className="todo-item"> 
+                    <input onChange={() => props.todoComplete(todo)} className="completed-checkbox" type="checkbox" checked={todo.completed}/>
+                    <span className="todo">{todo.name}</span>
+                  </div>
+                  <a href="#" onClick={() => props.todoRemove(todo.date)} className="remove-todo"> X </a>
                 </div>
-                <a href="#" onClick={() => props.todoRemove(todo.date)} className="remove-todo"> X </a>
+                <div className="assignee-container">
+                    <span> Assigned to: {todo.assignedTo} </span> 
+                </div>
               </li>
             )}
         </List>

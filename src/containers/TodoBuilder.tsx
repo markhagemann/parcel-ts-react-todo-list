@@ -2,6 +2,9 @@ import * as React from 'react';
 import { TodoForm } from '../components/Todo/TodoForm';
 import styled from 'styled-components';
 import { TodoList } from '../components/Todo/TodoList';
+import { FormWrapper } from '../common/styled-components';
+import { FormContainer } from '../common/styled-components';
+import { TeamMember } from '../containers/TeamManager';
 
 export interface TodoBuilderProps {
 
@@ -20,21 +23,8 @@ export interface TodoItem {
   date: number
   name: string
   completed: boolean
+  assignedTo: string
 }
-
-const FormWrapper = styled.div`
-    margin: 15px;
-`;
-
-const FormContainer = styled.div`
-    margin: 0 auto;
-    text-align: center;
-    padding: 10px;
-    background: #fff;
-    max-width: 290px;
-    border: 1px solid #ddd;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-`;
 
 export class TodoBuilder extends React.Component<TodoBuilderProps, TodoBuilderState> {
 
@@ -45,13 +35,15 @@ export class TodoBuilder extends React.Component<TodoBuilderProps, TodoBuilderSt
     filterIncomplete: false
   };
 
-  handleTodoAdd = (name: string) : void => {
-    if(name != "") {
+  handleTodoAdd = (name: string, assignee: string) : void => {
+    if(name != "" && assignee != "") {
       const newTodo: TodoItem = {
         date: new Date().getTime(),
         name,
-        completed: false
+        completed: false,
+        assignedTo: assignee
       }
+      console.log(assignee);
       this.setState((prevState) => ({
         todoItems: [...prevState.todoItems, newTodo]
       }));
@@ -106,15 +98,23 @@ export class TodoBuilder extends React.Component<TodoBuilderProps, TodoBuilderSt
 
   render() {
 
+    const memberHack: TeamMember[] =  [  
+      {"dateAdded": 15151533, "name": 'Billy'},
+      {"dateAdded": 15241863, "name": 'Dan'},
+      {"dateAdded": 15223433, "name": 'Kira'},
+    ]
+
     return (
       <FormWrapper>
         <FormContainer>
-          <TodoForm onCreate={this.handleTodoAdd} />
+          <TodoForm onCreate={this.handleTodoAdd}
+                    teamMemberArray={memberHack} /> 
           <TodoList onFilterChange={this.updateFilter}
                     todoComplete={this.handleTodoComplete} 
                     todoRemove={this.handleTodoRemove} 
                     todoShownArray={this.state.todoItems.filter(this.filterTodos)}
-                    todoTotalArray={this.state.todoItems} /> 
+                    todoTotalArray={this.state.todoItems} />
+                   
         </FormContainer>   
       </FormWrapper> 
     );

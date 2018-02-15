@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Route, Switch, NavLink } from 'react-router-dom';
+import { Route, Switch, NavLink, Redirect } from 'react-router-dom';
 import styled from "styled-components";
 import { injectGlobal } from 'styled-components';
 
@@ -36,7 +36,7 @@ const PageHeader = styled.div`
   margin-bottom: 30px;
   background: #3b4f98;
   color: #FFF;
-  text-align: left;
+  text-align: center;
 
   h1{
     margin: 0;
@@ -47,10 +47,13 @@ const PageHeader = styled.div`
     text-decoration: none;
   }
   .title {
-    color: #fff;
+    color: #ddd;
   }
   .title:hover {
     color: red;
+  }
+  .active .title{
+    color: #fff;
   }
 
 `;
@@ -65,8 +68,8 @@ export class App extends React.Component<any, any> {
         <NavLink to="/team"><span className="title">Team Manager</span> </NavLink>
       </PageHeader>
       <Switch>
-        <Route exact path="/" component={TodoBuilder} />
         <Route path="/team" component={TeamManager} />
+        <Route path="/" exact component={TodoBuilder}/>
       </Switch>
       </>
     );

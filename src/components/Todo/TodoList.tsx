@@ -85,7 +85,7 @@ const List = styled.ul`
     margin-top: 5px;
     padding: 5px;
     background: #707070;
-    border: 1px solid #f0f0f0;
+    border: 1px solid #585858;
     text-align: left;
   }
   .completed-checkbox {

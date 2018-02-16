@@ -1,13 +1,15 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { TodoItem, Filters } from '../../containers/TodoBuilder';
+import { TeamMember } from '../../containers/TeamManager';
 
 interface TodoListProps {
-  todoShownArray: TodoItem[]
-  todoTotalArray: TodoItem[]
+  items: TodoItem[]
+  teamMembers: TeamMember[]
   todoRemove: any
   todoComplete: any
   onFilterChange: (filter: Filters) => void
+  onAssignedChanged: (todo: TodoItem, member: string) => void
 }
 
 const FiltersContainer = styled.div`
@@ -104,11 +106,15 @@ const List = styled.ul`
   }
 `;
 
+const getEventValue = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  return event.target.value;
+}
+
 export const TodoList: React.SFC<TodoListProps> = (props) => {
 
   return (
       <>
-        {props.todoTotalArray.length > 0 && 
+        {props.items.length > 0 && 
           <FiltersContainer >
             <h4> Display: </h4>
             <label> 
@@ -128,7 +134,7 @@ export const TodoList: React.SFC<TodoListProps> = (props) => {
         }
         
         <List>
-            {props.todoShownArray.map((todo: TodoItem) =>
+            {props.items.map((todo: TodoItem) =>
               <li className={todo.completed ? 'completed' : ''} key={todo.date}>
                 <div className="todo-container" >
                   <div className="todo-item"> 
@@ -138,7 +144,14 @@ export const TodoList: React.SFC<TodoListProps> = (props) => {
                   <a href="#" onClick={() => props.todoRemove(todo.date)} className="remove-todo"> X </a>
                 </div>
                 <div className="assignee-container">
-                    <span> Assigned to: {todo.assignedTo} </span> 
+                  <span> Assigned to: </span> 
+                
+                  <select value={todo.assignedTo} onChange={(member) => props.onAssignedChanged(todo, getEventValue(member))}>
+                    <option value=''>Assign to...</option>
+                    {props.teamMembers.map((member: TeamMember) => 
+                      <option key={member.dateAdded} value={member.name}> {member.name} </option>
+                    )}
+                  </select>
                 </div>
               </li>
             )}

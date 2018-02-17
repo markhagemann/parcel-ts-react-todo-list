@@ -41,4 +41,7 @@ export const FormHolder = styled.div`
     background: #5066ba;
     border-color: #4965d1;
   }
+  button:disabled {
+    opacity: 0.6;
+  }
 `;

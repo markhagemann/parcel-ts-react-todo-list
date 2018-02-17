@@ -30,11 +30,14 @@ export class TodoForm extends React.Component<TodoFormProps, TodoFormState> {
   }
 
   handleOnClick = () => {
-    this.props.onCreate(this.state.todo, this.state.todoAssignee);
-    this.setState({ todo: "", todoAssignee: ""});
+    if(this.state.todo != '' && this.state.todoAssignee != '') {
+        this.props.onCreate(this.state.todo, this.state.todoAssignee);
+        this.setState({ todo: "", todoAssignee: ""});
+    } 
   }
 
   render() {
+
     return (
       <FormHolder>
         <input onChange={this.handleTodoChange} value={this.state.todo} type="text" placeholder="What needs to be done?" />
@@ -44,7 +47,7 @@ export class TodoForm extends React.Component<TodoFormProps, TodoFormState> {
             <option key={member.dateAdded} value={member.name}> {member.name} </option>
           )}
         </select>
-        <button onClick={this.handleOnClick}> Add it to the list </button>
+        <button disabled={!this.state.todoAssignee || !this.state.todo} onClick={this.handleOnClick}> Add it to the list </button>
       </FormHolder>
     );
   }

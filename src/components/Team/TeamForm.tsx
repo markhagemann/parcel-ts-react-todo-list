@@ -29,7 +29,7 @@ export class TeamForm extends React.Component<TeamFormProps, TeamFormState> {
     return (
       <FormHolder>
         <input onChange={this.handleTodoChange} value={this.state.member} type="text" placeholder="Who are you adding?" />
-        <button onClick={this.handleOnClick}> Add them to the team </button>
+        <button disabled={!this.state.member} onClick={this.handleOnClick}> Add them to the team </button>
       </FormHolder>
     );
   }

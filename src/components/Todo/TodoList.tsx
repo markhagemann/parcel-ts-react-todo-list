@@ -92,9 +92,8 @@ const List = styled.ul`
     text-align: left;
 
     select {
-      border: 1px solid #f6f6f6;
-      background: #f6f6f6;
-
+      background: #818181;
+      color: #fff;
     }
   }
   .completed-checkbox {

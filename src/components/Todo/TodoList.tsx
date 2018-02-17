@@ -4,6 +4,7 @@ import { TodoItem, Filters } from '../../containers/TodoBuilder';
 import { TeamMember } from '../../containers/TeamManager';
 
 interface TodoListProps {
+  shownItems: TodoItem[]
   items: TodoItem[]
   teamMembers: TeamMember[]
   todoRemove: any
@@ -134,7 +135,7 @@ export const TodoList: React.SFC<TodoListProps> = (props) => {
         }
         
         <List>
-            {props.items.map((todo: TodoItem) =>
+            {props.shownItems.map((todo: TodoItem) =>
               <li className={todo.completed ? 'completed' : ''} key={todo.date}>
                 <div className="todo-container" >
                   <div className="todo-item"> 

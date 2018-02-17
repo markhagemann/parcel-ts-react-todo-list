@@ -9,7 +9,7 @@ interface TodoFormState {
 }
 
 interface TodoFormProps {
-  teamMemberArray: TeamMember[];
+  teamMembers: TeamMember[];
   onCreate: (name: string, todoAssignee: string) => void
 }
 
@@ -43,7 +43,7 @@ export class TodoForm extends React.Component<TodoFormProps, TodoFormState> {
         <input onChange={this.handleTodoChange} value={this.state.todo} type="text" placeholder="What needs to be done?" />
         <select value={this.state.todoAssignee} onChange={this.handleTodoAssigneeChange}>
           <option value=''>Assign to...</option>
-          {this.props.teamMemberArray.map((member: TeamMember) => 
+          {this.props.teamMembers.map((member: TeamMember) => 
             <option key={member.dateAdded} value={member.name}> {member.name} </option>
           )}
         </select>

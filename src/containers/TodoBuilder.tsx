@@ -120,11 +120,12 @@ export class TodoBuilder extends React.Component<TodoBuilderProps, TodoBuilderSt
       <FormWrapper>
         <FormContainer>
           <TodoForm onCreate={this.handleTodoAdd}
-            teamMemberArray={memberHack} />
+            teamMembers={memberHack} />
           <TodoList onFilterChange={this.updateFilter}
             todoComplete={this.handleTodoComplete}
             todoRemove={this.handleTodoRemove}
-            items={this.state.todoItems.filter(this.filterTodos)}
+            shownItems={this.state.todoItems.filter(this.filterTodos)}
+            items={this.state.todoItems}
             teamMembers={memberHack}
             onAssignedChanged={this.onAssignedChanged} />
 

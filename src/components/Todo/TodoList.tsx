@@ -2,6 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { TodoItem, Filters } from '../../containers/TodoBuilder';
 import { TeamMember } from '../../containers/TeamManager';
+import { TeamMemberSelector } from '../Team/TeamMemberSelector';
 
 interface TodoListProps {
   shownItems: TodoItem[]
@@ -151,13 +152,12 @@ export const TodoList: React.SFC<TodoListProps> = (props) => {
                 </div>
                 <div className="assignee-container">
                   <span> Assigned to: </span> 
-                
-                  <select value={todo.assignedTo} onChange={(member) => props.onAssignedChanged(todo, getEventValue(member))}>
-                    <option value=''>Assign to...</option>
-                    {props.teamMembers.map((member: TeamMember) => 
-                      <option key={member.dateAdded} value={member.name}> {member.name} </option>
-                    )}
-                  </select>
+                  <TeamMemberSelector
+                    members={props.teamMembers}
+                    initialMemberName={todo.assignedTo}
+                    onMemberChange={props.onAssignedChanged}
+                    todo={todo}
+                  />
                 </div>
               </li>
             )}

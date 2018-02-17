@@ -35,7 +35,7 @@ const FiltersContainer = styled.div`
   }
 
   .complete-tasks {
-    color: #74a83e;
+    color: #6a8251;
   }
 
   .incomplete-tasks {
@@ -90,6 +90,12 @@ const List = styled.ul`
     background: #707070;
     border: 1px solid #585858;
     text-align: left;
+
+    select {
+      border: 1px solid #f6f6f6;
+      background: #f6f6f6;
+
+    }
   }
   .completed-checkbox {
     margin-top: 6px;
@@ -97,10 +103,10 @@ const List = styled.ul`
   }
   .completed {
     color: #fff;
-    background: #74a83e;
+    background: #6a8251;
   }
   .completed:hover {
-    background: #8aca49;
+    background: #7da157;
   }
   .completed .remove-todo {
     color: #73123c;

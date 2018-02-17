@@ -47,13 +47,15 @@ const PageHeader = styled.div`
     text-decoration: none;
   }
   .title {
-    color: #ddd;
+    font-size: 16px;
+    color: #c5c5c5;
   }
   .title:hover {
-    color: red;
+    color: #96bcf8;
   }
   .active .title{
     color: #fff;
+    border-bottom: 1px solid #96bcf8;
   }
 
 `;
@@ -64,12 +66,13 @@ export class App extends React.Component<any, any> {
       <>
       <PageHeader>
         <h1> React to-do list</h1>    
-        <NavLink to="/"><span className="title">Home</span> </NavLink>
+        <NavLink to="/home"><span className="title">Home</span> </NavLink>
         <NavLink to="/team"><span className="title">Team Manager</span> </NavLink>
       </PageHeader>
       <Switch>
         <Route path="/team" component={TeamManager} />
-        <Route path="/" exact component={TodoBuilder}/>
+        <Route path="/home" component={TodoBuilder}/>
+        <Redirect to="/home"/>
       </Switch>
       </>
     );

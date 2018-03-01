@@ -18,9 +18,12 @@ const List = styled.ul`
     border: 1px solid #dedede;
     list-style-type: none;
     padding: 15px;
+    border: 0;
   }
   li:hover {
-    background: #eee;
+    background-color: #dfebfd;
+    color: #005ebb;
+    border-radius: 5px;
   }
   .team-member {
     justify-content: flex-start;

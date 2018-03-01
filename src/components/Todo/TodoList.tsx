@@ -58,12 +58,12 @@ const List = styled.ul`
   max-width: 270px;
 
   li {
-    border: 1px solid #dedede;
+    border-bottom: 1px solid #eee;
     list-style-type: none;
     padding: 15px;
   }
   li:hover {
-    background: #eee;
+    background-color: #eee;
   }
   .todo {
     justify-content: flex-start;
@@ -85,16 +85,15 @@ const List = styled.ul`
     justify-content: center;
   }
   .assignee-container {
-    color: #e3dfdf;
     margin-top: 5px;
     padding: 5px;
-    background: #707070;
-    border: 1px solid #585858;
+    border-radius: 5px;
     text-align: left;
 
     select {
-      background: #818181;
-      color: #fff;
+      background: #dfdfdf;
+      border-radius: 5px;
+      border: 0;
     }
   }
   .completed-checkbox {

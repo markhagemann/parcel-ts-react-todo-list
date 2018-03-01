@@ -11,7 +11,8 @@ export const FormContainer = styled.div`
     background: #fff;
     max-width: 290px;
     border: 1px solid #ddd;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    border-radius: 7px;
+    box-shadow: 0 2px 6px 0 hsla(0, 0%, 0%, 0.2);
 `;
 
 export const FormHolder = styled.div`
@@ -21,11 +22,12 @@ export const FormHolder = styled.div`
   margin: 15px auto;
 
   input, select {
-    background: #f6f6f6;
+    background: hsl(210, 9%, 96%);
     font-family: 'Titillium Web', sans-serif;
     padding: 10px;
     font-size: 15px;
-    border: 1px solid #ddd;
+    border: 0;
+    border-radius: 5px;
     margin-bottom: 5px;
   }
   button {
@@ -35,6 +37,7 @@ export const FormHolder = styled.div`
     padding:10px;
     background: #3b4f98;
     border: 2px solid #3b4f98;
+    border-radius: 5px;
   }
   button:hover{
     cursor: pointer;
